@@ -8,7 +8,7 @@ class Main extends Component {
   state = {
     search: "",
     employees: {},
-    results: {},
+    results: [],
     error: "",
     isLoading: true
   };
@@ -19,7 +19,6 @@ class Main extends Component {
         API.getEmployees()
             .then(res => {
                 this.setState({ employees: res.data.results })
-                console.log(this.state.employees);
             })
             .catch(err => console.log(err));
   }
@@ -35,8 +34,7 @@ class Main extends Component {
             let phone = this.state.employees[employee].phone;
             return first.includes(this.state.search) === true || last.includes(this.state.search) === true || email.includes(this.state.search) === true || phone.includes(this.state.search) === true
         })
-        console.log(searchResults);
-        setTimeout(() => this.setState({ results: searchResults}), 100)
+        this.setState({ results: searchResults})
     }, 100)
   };
 
@@ -62,7 +60,7 @@ class Main extends Component {
                     </div>
                     <Table 
                         employees={this.state.employees}
-                        searchResults={this.state.search}
+                        searchResults={this.state.results}
                     />
                 </div>) 
             }
