@@ -8,6 +8,7 @@ class Main extends Component {
   state = {
     search: "",
     employees: {},
+    results: {},
     error: "",
     isLoading: true
   };
@@ -18,14 +19,25 @@ class Main extends Component {
         API.getEmployees()
             .then(res => {
                 this.setState({ employees: res.data.results })
-                console.log(res.data.results[0].name.first);
+                console.log(this.state.employees);
             })
             .catch(err => console.log(err));
   }
 
   handleInputChange = event => {
     this.setState({ search: event.target.value });
-    // Filter employees as they type using search value
+    // Filters search and returns the array indexes of matching results
+    setTimeout(() => {
+        let searchResults = Object.keys(this.state.employees).filter((employee) => { 
+            let first = this.state.employees[employee].name.first;
+            let last = this.state.employees[employee].name.last;
+            let email = this.state.employees[employee].email;
+            let phone = this.state.employees[employee].phone;
+            return first.includes(this.state.search) === true || last.includes(this.state.search) === true || email.includes(this.state.search) === true || phone.includes(this.state.search) === true
+        })
+        console.log(searchResults);
+        setTimeout(() => this.setState({ results: searchResults}), 100)
+    }, 100)
   };
 
   handleFormSubmit = event => {
@@ -43,9 +55,15 @@ class Main extends Component {
                     <div className="card-body">
                         <h5 className="card-title">Manpower</h5>
                         <p className="card-text">Track your manpower!</p>
-                        <Search />
+                        <Search
+                            handleInputChange={this.handleInputChange}
+                            results={this.state.search}
+                        />
                     </div>
-                    <Table employees={this.state.employees}/>
+                    <Table 
+                        employees={this.state.employees}
+                        searchResults={this.state.search}
+                    />
                 </div>) 
             }
         </div>

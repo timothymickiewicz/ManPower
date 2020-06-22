@@ -4,7 +4,7 @@ import "./style.css";
 function Table(props) {
     if (props.employees !== {}) {
         return (
-            <ul className="list-group list-group-flush table">
+            <ul className="list-group list-group-flush">
               {Object.keys(props.employees).map((employee, index) => (
                 <li key={employee} className="list-group-item">
                   <img alt="Employee" src={props.employees[employee].picture.thumbnail} className="img-fluid" />
