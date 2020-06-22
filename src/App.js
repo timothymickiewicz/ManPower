@@ -1,11 +1,11 @@
 import React from 'react';
-import PageLayout from '../src/components/pageLayout/PageLayout';
+import Main from './pages/Main'
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <PageLayout />
+      <Main />
     </div>
   );
 }
