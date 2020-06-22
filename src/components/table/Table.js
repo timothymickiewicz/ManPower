@@ -3,7 +3,6 @@ import "./style.css";
 
 function Table(props) {
     if (props.employees !== {}) {
-        console.log(props.employees)
         return (
             <ul className="list-group list-group-flush table">
               {Object.keys(props.employees).map((employee, index) => (

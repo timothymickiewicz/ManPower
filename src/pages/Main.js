@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import Table from '../components/table/Table';
-import Loader from '../components/loader/Loader'
+import Loader from '../components/loader/Loader';
+import Search from '../components/search/Search'
 
 class Main extends Component {
   state = {
@@ -33,20 +34,20 @@ class Main extends Component {
   };
 
   render() {
-
     return (
         <div className="card">
-            
-            <div className="card-body">
-                <h5 className="card-title">Manpower</h5>
-                <p className="card-text">Track your manpower!</p>
-            </div>
-
+            {/* Set loader if page not loaded, else render content */}
             {this.state.isLoading ? 
                 (<Loader />) : 
-                (<Table employees={this.state.employees}/>) 
+                (<div>
+                    <div className="card-body">
+                        <h5 className="card-title">Manpower</h5>
+                        <p className="card-text">Track your manpower!</p>
+                        <Search />
+                    </div>
+                    <Table employees={this.state.employees}/>
+                </div>) 
             }
-
         </div>
     );
   }
