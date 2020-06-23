@@ -2,16 +2,31 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import Table from '../components/table/Table';
 import Loader from '../components/loader/Loader';
-import Search from '../components/search/Search'
+import Search from '../components/search/Search';
+import Header from '../components/header/Header';
+import Footer from '../components/footer/Footer'
+import "./style.css";
 
 class Main extends Component {
-  state = {
-    search: "",
-    employees: {},
-    results: [],
-    error: "",
-    isLoading: true
-  };
+    constructor() {
+        super();
+
+        this.state = {
+            search: "",
+            employees: {},
+            results: [],
+            error: "",
+            isLoading: true,
+            firstNameRender: false,
+            lastNameRender: false,
+            phoneNumberRender: false
+          };
+
+          this.handleFirstNameClick = this.handleFirstNameClick.bind(this);
+          this.handleLastNameClick = this.handleLastNameClick.bind(this);
+          this.handlePhoneNumberClick = this.handlePhoneNumberClick.bind(this);
+    }
+
 
   // When the component mounts, get a list of all employees
   componentDidMount() {
@@ -28,20 +43,36 @@ class Main extends Component {
     // Filters search and returns the array indexes of matching results
     setTimeout(() => {
         let searchResults = Object.keys(this.state.employees).filter((employee) => { 
-            let first = this.state.employees[employee].name.first;
-            let last = this.state.employees[employee].name.last;
-            let email = this.state.employees[employee].email;
-            let phone = this.state.employees[employee].phone;
-            return first.includes(this.state.search) === true || last.includes(this.state.search) === true || email.includes(this.state.search) === true || phone.includes(this.state.search) === true
+            return this.state.employees[employee].name.first.includes(this.state.search) === true || this.state.employees[employee].name.last.includes(this.state.search) === true || this.state.employees[employee].email.includes(this.state.search) === true || this.state.employees[employee].phone.includes(this.state.search) === true
         })
         this.setState({ results: searchResults})
     }, 100)
   };
 
-  handleFormSubmit = event => {
-    event.preventDefault();
-    // Filter employees array based on input
-  };
+    handleFirstNameClick() {
+        this.setState({ firstNameRender: true })
+        this.setState({ lastNameRender: false })
+        this.setState({ phoneNumberRender: false })
+        this.state.employees.sort(function(a, b){
+            return a.name.first.localeCompare(b.name.first);
+        })
+    }
+    handleLastNameClick() {
+        this.setState({ firstNameRender: false })
+        this.setState({ lastNameRender: true })
+        this.setState({ phoneNumberRender: false })
+        this.state.employees.sort(function(a, b){
+            return a.name.last.localeCompare(b.name.last);
+        })
+    }
+    handlePhoneNumberClick() {
+        this.setState({ firstNameRender: false })
+        this.setState({ lastNameRender: false })
+        this.setState({ phoneNumberRender: true })
+        this.state.employees.sort(function(a, b){
+            return a.phone.localeCompare(b.phone);
+        })
+    }
 
   render() {
     return (
@@ -49,18 +80,28 @@ class Main extends Component {
             {/* Set loader if page not loaded, else render content */}
             {this.state.isLoading ? 
                 (<Loader />) : 
-                (<div>
+                (<div className="container">
                     <div className="card-body">
-                        <h5 className="card-title">Manpower</h5>
-                        <p className="card-text">Track your manpower!</p>
+                        <Header />
                         <Search
                             handleInputChange={this.handleInputChange}
                             results={this.state.search}
                         />
+                        <Table 
+                            employees={this.state.employees}
+                            searchResults={this.state.results}
+                            firstNameSort={this.state.firstNameRender}
+                            lastNameSort={this.state.lastNameRender}
+                            phoneNumberSort={this.state.phoneNumberRender}
+                        />
                     </div>
-                    <Table 
-                        employees={this.state.employees}
-                        searchResults={this.state.results}
+                    <Footer
+                        handleFirstNameClick={this.handleFirstNameClick}
+                        handleLastNameClick={this.handleLastNameClick}
+                        handlePhoneNumberClick={this.handlePhoneNumberClick}
+                        firstNameRender={this.firstNameRender}
+                        lastNameRender={this.lastNameRender}
+                        phoneNumberRender={this.phoneNumberRender}
                     />
                 </div>) 
             }

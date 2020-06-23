@@ -1,0 +1,15 @@
+h5 {
+    font-size: 50px;
+    float: left;
+}
+.motto {
+    font-size: 25px;
+    float: right;
+    border: solid white 3px;
+    padding: 5px;
+    border-radius: 5px
+}
+.header {
+    font-family: 'Kumar One', cursive;
+    text-align: center;
+}
