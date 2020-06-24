@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Manpower/precache-manifest.33e952ef5bda2d2bdff547079a231c03.js"
+  "/Manpower/precache-manifest.c77e6f446a5731ffda821a796a225e11.js"
 );
 
 self.addEventListener('message', (event) => {
