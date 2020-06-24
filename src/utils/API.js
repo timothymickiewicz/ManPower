@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// Setting up CORS access configuration
 const config = {
     headers: {
       "Access-Control-Allow-Origin": "*",

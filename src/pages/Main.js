@@ -15,7 +15,6 @@ class Main extends Component {
             search: "",
             employees: {},
             results: [],
-            error: "",
             isLoading: true,
             firstNameRender: false,
             lastNameRender: false,
@@ -28,7 +27,7 @@ class Main extends Component {
     }
 
 
-    // When the component mounts, get a list of all employees
+    // When the component mounts, set state.employees to all employees
     componentDidMount() {
             this.setState({ isLoading: false });
             API.getEmployees()
@@ -50,36 +49,78 @@ class Main extends Component {
     };
 
     handleFirstNameClick() {
-        this.setState({ 
-            firstNameRender: true, 
-            lastNameRender: false, 
-            phoneNumberRender: false 
-        })
-        this.state.employees.sort(function(a, b){
-            return a.name.first.localeCompare(b.name.first);
-        })
+        // if this.state.firstNameRender is true, set to false and sort first name z-a
+        if (this.state.firstNameRender) {
+            this.setState({ 
+                firstNameRender: false, 
+                lastNameRender: false, 
+                phoneNumberRender: false  
+            })
+            this.state.employees.sort(function(a, b){
+                return b.name.first.localeCompare(a.name.first);
+            })
+        }
+        // if this.state.firstNameRender is false, set to true and sort by first name a-z
+        else if (!this.state.firstNameRender) {
+            this.setState({ 
+                firstNameRender: true, 
+                lastNameRender: false, 
+                phoneNumberRender: false 
+            })
+            this.state.employees.sort(function(a, b){
+                return a.name.first.localeCompare(b.name.first);
+            })
+        }
     }
 
     handleLastNameClick() {
-        this.setState({ 
-            firstNameRender: false, 
-            lastNameRender: true, 
-            phoneNumberRender: false 
-        })
-        this.state.employees.sort(function(a, b){
-            return a.name.last.localeCompare(b.name.last);
-        })
+        // if this.state.lastNameRender is true, set lastNameRender to false and sort z-a
+        if (this.state.lastNameRender) {
+            this.setState({ 
+                firstNameRender: false, 
+                lastNameRender: false, 
+                phoneNumberRender: false  
+            }) 
+            this.state.employees.sort(function(a, b){
+                return b.name.last.localeCompare(a.name.last);
+            })
+        }
+        // if this.state.lastNameRender is false, set lastNameRender to true and sort a-z
+        else if (!this.state.lastNameRender) {
+            this.setState({ 
+                firstNameRender: false, 
+                lastNameRender: true, 
+                phoneNumberRender: false 
+            })
+            this.state.employees.sort(function(a, b){
+                return a.name.last.localeCompare(b.name.last);
+            })
+        }
     }
-    
+
     handlePhoneNumberClick() {
-        this.setState({ 
-            firstNameRender: false, 
-            lastNameRender: false, 
-            phoneNumberRender: true 
-        })
-        this.state.employees.sort(function(a, b){
-            return a.phone.localeCompare(b.phone);
-        })
+        // if this.state.phoneNumberRender is true, set to false and sort phone numbers 9-0
+        if (this.state.phoneNumberRender) {
+            this.setState({ 
+                firstNameRender: false, 
+                lastNameRender: false, 
+                phoneNumberRender: false  
+            }) 
+            this.state.employees.sort(function(a, b){
+                return b.phone.localeCompare(a.phone);
+            })
+        }
+        // if this.state.phoneNumberRender is false, set to true and sort phone numbers 0-9
+        else if (!this.state.phoneNumberRender) {
+            this.setState({ 
+                firstNameRender: false, 
+                lastNameRender: false, 
+                phoneNumberRender: true 
+            })
+            this.state.employees.sort(function(a, b){
+                return a.phone.localeCompare(b.phone);
+            })
+        }
     }
 
   render() {
@@ -98,6 +139,7 @@ class Main extends Component {
                         <Table 
                             employees={this.state.employees}
                             searchResults={this.state.results}
+                            search={this.state.search}
                             firstNameSort={this.state.firstNameRender}
                             lastNameSort={this.state.lastNameRender}
                             phoneNumberSort={this.state.phoneNumberRender}
@@ -107,9 +149,9 @@ class Main extends Component {
                         handleFirstNameClick={this.handleFirstNameClick}
                         handleLastNameClick={this.handleLastNameClick}
                         handlePhoneNumberClick={this.handlePhoneNumberClick}
-                        firstNameRender={this.firstNameRender}
-                        lastNameRender={this.lastNameRender}
-                        phoneNumberRender={this.phoneNumberRender}
+                        firstNameRender={this.state.firstNameRender}
+                        lastNameRender={this.state.lastNameRender}
+                        phoneNumberRender={this.state.phoneNumberRender}
                     />
                 </div>) 
             }

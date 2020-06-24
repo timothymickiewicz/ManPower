@@ -1,4 +1,21 @@
+# Manpower
+https://timothymickiewicz.github.io/Manpower/
+
+Track your company's Manpower!
+
+<img src="public/manpower.gif">
+
+## Contributors
+Timothy Mickiewicz
+
+## Technologies
+HTML5, CSS3, JavaScript, React.js, Axios, GitHub Pages Deployment
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Contact
+![Github Profile Picture](https://avatars3.githubusercontent.com/u/58575568?v=4)</br>
+timothy.mickiewicz@gmail.com
 
 ## Available Scripts
 
