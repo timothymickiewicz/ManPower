@@ -42,7 +42,7 @@ class Main extends Component {
         // Filters search and returns the array indexes of matching results
         setTimeout(() => {
             let searchResults = Object.keys(this.state.employees).filter((employee) => { 
-                return this.state.employees[employee].name.first.includes(this.state.search) === true || this.state.employees[employee].name.last.includes(this.state.search) === true || this.state.employees[employee].email.includes(this.state.search) === true || this.state.employees[employee].phone.includes(this.state.search) === true
+                return this.state.employees[employee].name.first.includes(this.state.search) === true || this.state.employees[employee].name.last.includes(this.state.search) === true || this.state.employees[employee].email.includes(this.state.search) === true || this.state.employees[employee].phone.includes(this.state.search) === true || this.state.employees[employee].location.state.includes(this.state.search) === true || this.state.employees[employee].location.city.includes(this.state.search) === true
             })
             this.setState({ results: searchResults})
         }, 100)
