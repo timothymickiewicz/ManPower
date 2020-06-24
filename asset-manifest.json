@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Manpower/static/css/main.a060dd94.chunk.css",
+    "main.js": "/Manpower/static/js/main.42b5c94b.chunk.js",
+    "main.js.map": "/Manpower/static/js/main.42b5c94b.chunk.js.map",
+    "runtime-main.js": "/Manpower/static/js/runtime-main.e5f7f160.js",
+    "runtime-main.js.map": "/Manpower/static/js/runtime-main.e5f7f160.js.map",
+    "static/js/2.67493d75.chunk.js": "/Manpower/static/js/2.67493d75.chunk.js",
+    "static/js/2.67493d75.chunk.js.map": "/Manpower/static/js/2.67493d75.chunk.js.map",
+    "index.html": "/Manpower/index.html",
+    "precache-manifest.33e952ef5bda2d2bdff547079a231c03.js": "/Manpower/precache-manifest.33e952ef5bda2d2bdff547079a231c03.js",
+    "service-worker.js": "/Manpower/service-worker.js",
+    "static/css/main.a060dd94.chunk.css.map": "/Manpower/static/css/main.a060dd94.chunk.css.map",
+    "static/js/2.67493d75.chunk.js.LICENSE.txt": "/Manpower/static/js/2.67493d75.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e5f7f160.js",
+    "static/js/2.67493d75.chunk.js",
+    "static/css/main.a060dd94.chunk.css",
+    "static/js/main.42b5c94b.chunk.js"
+  ]
+}
