@@ -2,7 +2,7 @@ import React from "react";
 import "./style.css";
 
 function Footer(props) {
-    // Set button text to respond to props values
+    // Set the buttons texts to respond to props values
     let firstNameValue, lastNameValue, phoneNumberValue = "";
 
     switch(props.firstNameRender) {

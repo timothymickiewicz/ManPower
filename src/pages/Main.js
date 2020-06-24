@@ -4,7 +4,8 @@ import Table from '../components/table/Table';
 import Loader from '../components/loader/Loader';
 import Search from '../components/search/Search';
 import Header from '../components/header/Header';
-import Footer from '../components/footer/Footer'
+import Footer from '../components/footer/Footer';
+import Anime from 'react-anime';
 import "./style.css";
 
 class Main extends Component {
@@ -145,14 +146,45 @@ class Main extends Component {
                             phoneNumberSort={this.state.phoneNumberRender}
                         />
                     </div>
-                    <Footer
-                        handleFirstNameClick={this.handleFirstNameClick}
-                        handleLastNameClick={this.handleLastNameClick}
-                        handlePhoneNumberClick={this.handlePhoneNumberClick}
-                        firstNameRender={this.state.firstNameRender}
-                        lastNameRender={this.state.lastNameRender}
-                        phoneNumberRender={this.state.phoneNumberRender}
-                    />
+                    {/* Check the value of the search bar, if empty then fade in the footer buttons and display them, else fade them out and display nothing to be inaccessible */}
+                    {this.state.search.trim() === "" ? (                    
+                    <Anime 
+                    easing='easeInExpo'
+                    duration={2000}
+                    delay='0'
+                    targets='.btn-group'
+                    opacity= '100'
+                    begin= {() => {
+                        return document.querySelector('.btn-group').style.removeProperty( 'display' );
+                    }}>
+                        <Footer
+                            checkSearch={this.state.search}
+                            handleFirstNameClick={this.handleFirstNameClick}
+                            handleLastNameClick={this.handleLastNameClick}
+                            handlePhoneNumberClick={this.handlePhoneNumberClick}
+                            firstNameRender={this.state.firstNameRender}
+                            lastNameRender={this.state.lastNameRender}
+                            phoneNumberRender={this.state.phoneNumberRender}
+                        />
+                    </Anime>) : (
+                    <Anime 
+                    easing='easeOutExpo'
+                    duration={1000}
+                    delay='0'
+                    targets='.btn-group'
+                    opacity='0'
+                    complete= {() => {
+                        return document.querySelector('.btn-group').style.display = 'none';
+                    }}>
+                        <Footer
+                            handleFirstNameClick={this.handleFirstNameClick}
+                            handleLastNameClick={this.handleLastNameClick}
+                            handlePhoneNumberClick={this.handlePhoneNumberClick}
+                            firstNameRender={this.state.firstNameRender}
+                            lastNameRender={this.state.lastNameRender}
+                            phoneNumberRender={this.state.phoneNumberRender}
+                        />
+                    </Anime>)}
                 </div>) 
             }
         </div>
