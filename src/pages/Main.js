@@ -28,47 +28,55 @@ class Main extends Component {
     }
 
 
-  // When the component mounts, get a list of all employees
-  componentDidMount() {
-        this.setState({ isLoading: false });
-        API.getEmployees()
-            .then(res => {
-                this.setState({ employees: res.data.results })
-            })
-            .catch(err => console.log(err));
-  }
+    // When the component mounts, get a list of all employees
+    componentDidMount() {
+            this.setState({ isLoading: false });
+            API.getEmployees()
+                .then(res => {
+                    this.setState({ employees: res.data.results })
+                })
+                .catch(err => console.log(err));
+    }
 
-  handleInputChange = event => {
-    this.setState({ search: event.target.value });
-    // Filters search and returns the array indexes of matching results
-    setTimeout(() => {
-        let searchResults = Object.keys(this.state.employees).filter((employee) => { 
-            return this.state.employees[employee].name.first.includes(this.state.search) === true || this.state.employees[employee].name.last.includes(this.state.search) === true || this.state.employees[employee].email.includes(this.state.search) === true || this.state.employees[employee].phone.includes(this.state.search) === true
-        })
-        this.setState({ results: searchResults})
-    }, 100)
-  };
+    handleInputChange = event => {
+        this.setState({ search: event.target.value });
+        // Filters search and returns the array indexes of matching results
+        setTimeout(() => {
+            let searchResults = Object.keys(this.state.employees).filter((employee) => { 
+                return this.state.employees[employee].name.first.includes(this.state.search) === true || this.state.employees[employee].name.last.includes(this.state.search) === true || this.state.employees[employee].email.includes(this.state.search) === true || this.state.employees[employee].phone.includes(this.state.search) === true
+            })
+            this.setState({ results: searchResults})
+        }, 100)
+    };
 
     handleFirstNameClick() {
-        this.setState({ firstNameRender: true })
-        this.setState({ lastNameRender: false })
-        this.setState({ phoneNumberRender: false })
+        this.setState({ 
+            firstNameRender: true, 
+            lastNameRender: false, 
+            phoneNumberRender: false 
+        })
         this.state.employees.sort(function(a, b){
             return a.name.first.localeCompare(b.name.first);
         })
     }
+
     handleLastNameClick() {
-        this.setState({ firstNameRender: false })
-        this.setState({ lastNameRender: true })
-        this.setState({ phoneNumberRender: false })
+        this.setState({ 
+            firstNameRender: false, 
+            lastNameRender: true, 
+            phoneNumberRender: false 
+        })
         this.state.employees.sort(function(a, b){
             return a.name.last.localeCompare(b.name.last);
         })
     }
+    
     handlePhoneNumberClick() {
-        this.setState({ firstNameRender: false })
-        this.setState({ lastNameRender: false })
-        this.setState({ phoneNumberRender: true })
+        this.setState({ 
+            firstNameRender: false, 
+            lastNameRender: false, 
+            phoneNumberRender: true 
+        })
         this.state.employees.sort(function(a, b){
             return a.phone.localeCompare(b.phone);
         })
