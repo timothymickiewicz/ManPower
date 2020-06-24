@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9063af3576fe664f2139092147d1fb38",
+    "revision": "73b97e6525d7602dad5ee2ebc5423376",
     "url": "/Manpower/index.html"
   },
   {
-    "revision": "6ae679ed8ecd8e62140e",
+    "revision": "cc905f8ae842e120d256",
     "url": "/Manpower/static/css/main.9f513270.chunk.css"
   },
   {
-    "revision": "68d8c3e54c95bafc438f",
-    "url": "/Manpower/static/js/2.67493d75.chunk.js"
+    "revision": "7bdb538cd17d10280793",
+    "url": "/Manpower/static/js/2.09e0e058.chunk.js"
   },
   {
     "revision": "e88a3e95b5364d46e95b35ae8c0dc27d",
-    "url": "/Manpower/static/js/2.67493d75.chunk.js.LICENSE.txt"
+    "url": "/Manpower/static/js/2.09e0e058.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "6ae679ed8ecd8e62140e",
-    "url": "/Manpower/static/js/main.0e73753b.chunk.js"
+    "revision": "cc905f8ae842e120d256",
+    "url": "/Manpower/static/js/main.c75053b6.chunk.js"
   },
   {
     "revision": "3987acb2db10bab812b8",
